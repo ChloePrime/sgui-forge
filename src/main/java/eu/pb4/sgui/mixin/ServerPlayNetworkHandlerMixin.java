@@ -318,7 +318,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
         }
     }
 
-    @Inject(method = "method_44900", at = @At("HEAD"), cancellable = true)
+    @Inject(method = {"method_44900", "m_244887_"}, at = @At("HEAD"), cancellable = true)
     private void sgui$onMessage(ChatMessageC2SPacket packet, Optional<LastSeenMessageList> optional, CallbackInfo ci) {
         if (this.player.currentScreenHandler instanceof BookScreenHandler handler) {
             try {
@@ -331,7 +331,7 @@ public abstract class ServerPlayNetworkHandlerMixin {
         }
     }
 
-    @Inject(method = "method_44356", at = @At("HEAD"), cancellable = true)
+    @Inject(method = {"method_44356", "m_244885_"}, at = @At("HEAD"), cancellable = true)
     private void sgui$onCommand(CommandExecutionC2SPacket packet, Optional<LastSeenMessageList> optional, CallbackInfo ci) {
         if (this.player.currentScreenHandler instanceof BookScreenHandler handler) {
             try {

@@ -163,7 +163,7 @@ public class AnimatedGuiElementBuilder implements GuiElementBuilderInterface<Ani
     }
 
     /**
-     * Hides all {@link net.minecraft.item.ItemStack.TooltipSection}s from the current element display
+     * Hides all {@link ItemStack.TooltipSection}s from the current element display
      *
      * @return this element builder
      */
@@ -173,7 +173,7 @@ public class AnimatedGuiElementBuilder implements GuiElementBuilderInterface<Ani
     }
 
     /**
-     * Hides a {@link net.minecraft.item.ItemStack.TooltipSection}
+     * Hides a {@link ItemStack.TooltipSection}
      * from the current elements display.
      *
      * @param section the section to hide
@@ -185,7 +185,7 @@ public class AnimatedGuiElementBuilder implements GuiElementBuilderInterface<Ani
     }
 
     /**
-     * Set the {@link net.minecraft.item.ItemStack.TooltipSection}s to
+     * Set the {@link ItemStack.TooltipSection}s to
      * hide from the current elements display, by the flags.
      *
      * @param value the flags to hide
