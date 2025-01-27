@@ -144,7 +144,7 @@ public class HotbarGui extends BaseSlotGui {
         this.player.currentScreenHandler = this.screenHandler;
 
         GuiHelpers.sendPlayerScreenHandler(this.player);
-        this.player.networkHandler.sendPacket(new UpdateSelectedSlotS2CPacket(this.selectedSlot));
+        this.player.networkHandler.send(new UpdateSelectedSlotS2CPacket(this.selectedSlot));
     }
 
     /**
@@ -254,7 +254,7 @@ public class HotbarGui extends BaseSlotGui {
     public void setSelectedSlot(int value) {
         this.selectedSlot = MathHelper.clamp(value, 0, 8);
         if (this.isOpen()) {
-            this.player.networkHandler.sendPacket(new UpdateSelectedSlotS2CPacket(this.selectedSlot));
+            this.player.networkHandler.send(new UpdateSelectedSlotS2CPacket(this.selectedSlot));
         }
     }
 
@@ -277,7 +277,7 @@ public class HotbarGui extends BaseSlotGui {
         if ((this.isOpen() || screenHandlerIsClosed) && !this.reOpen) {
             if (!screenHandlerIsClosed && this.player.currentScreenHandler == this.screenHandler) {
                 this.player.closeHandledScreen();
-                this.player.networkHandler.sendPacket(new UpdateSelectedSlotS2CPacket(this.player.getInventory().selectedSlot));
+                this.player.networkHandler.send(new UpdateSelectedSlotS2CPacket(this.player.getInventory().selectedSlot));
             }
 
             this.player.currentScreenHandler.syncState();

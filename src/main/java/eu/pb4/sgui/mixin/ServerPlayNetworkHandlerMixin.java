@@ -81,7 +81,7 @@ public abstract class ServerPlayNetworkHandlerMixin extends ServerCommonNetworkH
                 if (handler.getGui().isOpen()) {
                     if (!allow) {
                         if (slot >= 0 && slot < handler.getGui().getSize()) {
-                            this.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), slot, handler.getSlot(slot).getStack()));
+                            this.send(new ScreenHandlerSlotUpdateS2CPacket(handler.syncId, handler.nextRevision(), slot, handler.getSlot(slot).getStack()));
                         }
                         GuiHelpers.sendSlotUpdate(this.player, -1, -1, this.player.currentScreenHandler.getCursorStack(), handler.getRevision());
 
@@ -142,7 +142,7 @@ public abstract class ServerPlayNetworkHandlerMixin extends ServerCommonNetworkH
                 var screenHandler = this.player.currentScreenHandler;
                 try {
                     if (screenHandler.getType() != null) {
-                        this.sendPacket(new OpenScreenS2CPacket(screenHandler.syncId, screenHandler.getType(), handler.getGui().getTitle()));
+                        this.send(new OpenScreenS2CPacket(screenHandler.syncId, screenHandler.getType(), handler.getGui().getTitle()));
                         screenHandler.syncState();
                     }
                 } catch (Throwable ignored) {
@@ -229,7 +229,7 @@ public abstract class ServerPlayNetworkHandlerMixin extends ServerCommonNetworkH
     private void sgui$catchUpdateSelectedSlot(UpdateSelectedSlotC2SPacket packet, CallbackInfo ci) {
         if (this.player.currentScreenHandler instanceof HotbarScreenHandler handler) {
             if (!handler.getGui().onSelectedSlotChange(packet.getSelectedSlot())) {
-                this.sendPacket(new UpdateSelectedSlotS2CPacket(handler.getGui().getSelectedSlot()));
+                this.send(new UpdateSelectedSlotS2CPacket(handler.getGui().getSelectedSlot()));
             }
             ci.cancel();
         }
@@ -271,10 +271,10 @@ public abstract class ServerPlayNetworkHandlerMixin extends ServerCommonNetworkH
                 var pos = packet.getBlockHitResult().getBlockPos();
                 handler.syncSelectedSlot();
 
-                this.sendPacket(new BlockUpdateS2CPacket(pos, this.player. getServerWorld().getBlockState(pos)));
+                this.send(new BlockUpdateS2CPacket(pos, this.player. getServerWorld().getBlockState(pos)));
                 pos = pos.offset(packet.getBlockHitResult().getSide());
-                this.sendPacket(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
-                this.sendPacket(new PlayerActionResponseS2CPacket(packet.getSequence()));
+                this.send(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
+                this.send(new PlayerActionResponseS2CPacket(packet.getSequence()));
 
                 ci.cancel();
             }
@@ -293,10 +293,10 @@ public abstract class ServerPlayNetworkHandlerMixin extends ServerCommonNetworkH
                     handler.syncOffhandSlot();
                 }
 
-                this.sendPacket(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
+                this.send(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
                 pos = pos.offset(packet.getDirection());
-                this.sendPacket(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
-                this.sendPacket(new PlayerActionResponseS2CPacket(packet.getSequence()));
+                this.send(new BlockUpdateS2CPacket(pos, this.player.getServerWorld().getBlockState(pos)));
+                this.send(new PlayerActionResponseS2CPacket(packet.getSequence()));
                 ci.cancel();
             }
         }

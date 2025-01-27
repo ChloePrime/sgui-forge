@@ -138,13 +138,13 @@ public interface GuiInterface {
             throw new IllegalArgumentException(String.format("The property '%s' is not valid for the handler '%s'", property.name(), Registries.SCREEN_HANDLER.getId(this.getType())));
         }
         if (this.isOpen()) {
-            this.getPlayer().networkHandler.sendPacket(new ScreenHandlerPropertyUpdateS2CPacket(this.getSyncId(), property.id(), value));
+            this.getPlayer().networkHandler.send(new ScreenHandlerPropertyUpdateS2CPacket(this.getSyncId(), property.id(), value));
         }
     }
 
     default void sendRawProperty(int id, int value) {
         if (this.isOpen()) {
-            this.getPlayer().networkHandler.sendPacket(new ScreenHandlerPropertyUpdateS2CPacket(this.getSyncId(), id, value));
+            this.getPlayer().networkHandler.send(new ScreenHandlerPropertyUpdateS2CPacket(this.getSyncId(), id, value));
         }
     }
 

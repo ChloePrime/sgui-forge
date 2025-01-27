@@ -28,7 +28,7 @@ public final class GuiHelpers {
     }
 
     public static void sendSlotUpdate(ServerPlayerEntity player, int syncId, int slot, ItemStack stack, int revision) {
-        player.networkHandler.sendPacket(new ScreenHandlerSlotUpdateS2CPacket(syncId, revision, slot, stack));
+        player.networkHandler.send(new ScreenHandlerSlotUpdateS2CPacket(syncId, revision, slot, stack));
     }
 
     public static void sendSlotUpdate(ServerPlayerEntity player, int syncId, int slot, ItemStack stack) {
@@ -36,11 +36,11 @@ public final class GuiHelpers {
     }
 
     public static void sendPlayerScreenHandler(ServerPlayerEntity player) {
-        player.networkHandler.sendPacket(new InventoryS2CPacket(player.currentScreenHandler.syncId, player.currentScreenHandler.nextRevision(), player.currentScreenHandler.getStacks(), player.currentScreenHandler.getCursorStack()));
+        player.networkHandler.send(new InventoryS2CPacket(player.currentScreenHandler.syncId, player.currentScreenHandler.nextRevision(), player.currentScreenHandler.getStacks(), player.currentScreenHandler.getCursorStack()));
     }
 
     public static void sendPlayerInventory(ServerPlayerEntity player) {
-        player.networkHandler.sendPacket(new InventoryS2CPacket(player.playerScreenHandler.syncId, player.playerScreenHandler.nextRevision(), player.playerScreenHandler.getStacks(), player.playerScreenHandler.getCursorStack()));
+        player.networkHandler.send(new InventoryS2CPacket(player.playerScreenHandler.syncId, player.playerScreenHandler.nextRevision(), player.playerScreenHandler.getStacks(), player.playerScreenHandler.getCursorStack()));
     }
 
     public static int posToIndex(int x, int y, int height, int width) {

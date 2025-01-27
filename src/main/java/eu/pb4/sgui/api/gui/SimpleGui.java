@@ -115,7 +115,7 @@ public class SimpleGui extends BaseSlotGui {
         this.title = title;
 
         if (this.isOpen()) {
-            this.player.networkHandler.sendPacket(new OpenScreenS2CPacket(this.syncId, this.type, title));
+            this.player.networkHandler.send(new OpenScreenS2CPacket(this.syncId, this.type, title));
             this.screenHandler.syncState();
         }
     }
@@ -260,7 +260,7 @@ public class SimpleGui extends BaseSlotGui {
      */
     @Deprecated
     public void sendProperty(int property, int value) {
-        this.player.networkHandler.sendPacket(new ScreenHandlerPropertyUpdateS2CPacket(this.syncId, property, value));
+        this.player.networkHandler.send(new ScreenHandlerPropertyUpdateS2CPacket(this.syncId, property, value));
     }
 
     @Deprecated

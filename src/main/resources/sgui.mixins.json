@@ -8,8 +8,7 @@
     "ScreenHandlerMixin",
     "ServerPlayerEntityMixin",
     "ServerPlayNetworkHandlerMixin",
-    "SignBlockEntityAccessor",
-    "chloe_patch.ServerCommonNetworkHandlerMixin"
+    "SignBlockEntityAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

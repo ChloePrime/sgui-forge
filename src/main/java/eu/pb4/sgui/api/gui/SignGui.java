@@ -123,7 +123,7 @@ public class SignGui implements GuiInterface {
     public void updateSign() {
         if (this.player.currentScreenHandler == this.screenHandler) {
             this.reOpen = true;
-            this.player.networkHandler.sendPacket(new CloseScreenS2CPacket(this.screenHandler.syncId));
+            this.player.networkHandler.send(new CloseScreenS2CPacket(this.screenHandler.syncId));
         } else {
             this.open();
         }
@@ -150,9 +150,9 @@ public class SignGui implements GuiInterface {
         }
         this.player.currentScreenHandler = this.screenHandler;
 
-        this.player.networkHandler.sendPacket(new BlockUpdateS2CPacket(this.signEntity.getPos(), this.type));
-        this.player.networkHandler.sendPacket(this.signEntity.toUpdatePacket());
-        this.player.networkHandler.sendPacket(new SignEditorOpenS2CPacket(this.signEntity.getPos(), true));
+        this.player.networkHandler.send(new BlockUpdateS2CPacket(this.signEntity.getPos(), this.type));
+        this.player.networkHandler.send(this.signEntity.toUpdatePacket());
+        this.player.networkHandler.send(new SignEditorOpenS2CPacket(this.signEntity.getPos(), true));
 
         this.reOpen = false;
         this.open = true;
@@ -166,7 +166,7 @@ public class SignGui implements GuiInterface {
             this.open = false;
             this.reOpen = false;
 
-            this.player.networkHandler.sendPacket(new BlockUpdateS2CPacket(player.getServerWorld(), signEntity.getPos()));
+            this.player.networkHandler.send(new BlockUpdateS2CPacket(player.getServerWorld(), signEntity.getPos()));
 
             if (alreadyClosed && this.player.currentScreenHandler == this.screenHandler) {
                 this.player.onHandledScreenClosed();
