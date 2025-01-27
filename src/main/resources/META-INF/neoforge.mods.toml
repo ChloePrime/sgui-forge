@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL="https://github.com/ChloePrime/sgui-forge/issues"
+license = "LGPLv3"
+
+[[mods]]
+modId = "sgui"
+version = "${version}"
+displayName = "sgui"
+authors = "Patbox(Original), ChloePrime(Porter)"
+description = '''
+Library for creating server side guis!
+'''
+#logoFile = ""
+
+[[dependencies.sgui]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sgui]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.sgui]]
+modId = "fabric_api" # Use [Forgefied Fabric API](https://www.curseforge.com/minecraft/mc-mods/forgified-fabric-api)
+type = "required"
+versionRange = "[0.100,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "sgui.mixins.json"

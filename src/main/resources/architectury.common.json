@@ -1,0 +1,5 @@
+{
+  "injected_interfaces": {
+    "net/minecraft/class_8609": ["eu/pb4/sgui/chloe_patch/ServerCommonNetworkHandlerPatch"]
+  }
+}
